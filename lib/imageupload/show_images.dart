@@ -26,15 +26,15 @@ class _ShowImagesState extends State<ShowImages> {
           .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting) {
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: const Center(
-                    child: CircularProgressIndicator()
-                  )
-                );
-              } else if(!snapshot.hasData) {
-            return const Center(child: Text("No image upload"),);
-          } else {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: const Center(
+                child: CircularProgressIndicator()
+              )
+            );
+          } else if(!snapshot.hasData) {
+              return const Center(child: Text("No image upload"),);
+            } else {
             return ListView.builder(
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
@@ -47,7 +47,6 @@ class _ShowImagesState extends State<ShowImages> {
               },
             );
           }
-          
         },
       ),
     );

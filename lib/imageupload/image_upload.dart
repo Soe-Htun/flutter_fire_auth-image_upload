@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // firebase storage for uploading the image to firebaseStorage
 // and, cloud firestore for saving the url for uploaded image to our application
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
@@ -193,7 +194,8 @@ class _ImageUploadState extends State<ImageUpload> {
         .doc(widget.userId)
         .collection("images")
         .add({'downloadURL' : _imageUrl}).whenComplete(() => 
-          const SnackBar(content: Text("Image Upload Successfully :"), duration: Duration(seconds: 1),)
+          // const SnackBar(content: Text("Image Upload Successfully :"), duration: Duration(seconds: 1),)
+          Fluttertoast.showToast(msg: "Image Upload Successfully : :")
         );
     } else {
       Reference ref= FirebaseStorage.instance
